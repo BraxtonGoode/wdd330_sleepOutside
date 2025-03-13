@@ -40,10 +40,11 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 export function cartCount() {
   const cartIndicator = document.querySelector("sup");
   const currentCart = getLocalStorage("so-cart");
-  console.log(currentCart);
+  let count = 0;
+  
   try {
       if (currentCart !== null) {
-          let count = 0;
+          
           currentCart.forEach(i => {
               count++;
           });
