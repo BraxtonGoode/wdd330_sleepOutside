@@ -45,9 +45,9 @@ export default class ProductDetails {
 
   renderProductDetails(selector) {
     // find the parent node for housing the product - see `main`
-    const node = document.querySelector(selector);
+    const htmlElement = document.querySelector(selector);
     // add product card to main tag
-    node.insertAdjacentHTML(
+    htmlElement.insertAdjacentHTML(
       "afterBegin",
       getProductCard(this.product)
     );
