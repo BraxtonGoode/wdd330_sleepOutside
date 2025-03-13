@@ -202,6 +202,19 @@ button {
   grid-column: 3;
 }
 
+.cart-footer {
+  padding-inline: 2em;
+}
+.cart-footer h2 {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  color: var(--dark-grey);
+}
+#total-cost {
+  font-weight: 400;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -219,4 +232,8 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+.hidden {
+  display: none;
 }
