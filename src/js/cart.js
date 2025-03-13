@@ -1,10 +1,15 @@
-import { getLocalStorage, cartCount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
 
 function renderCartContents() {
   // adding `|| []` so when the cart is empty, we don't get a null value for the cartItems
   const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  // Add event listeners to remove buttons
+  document.querySelectorAll(".cart-card__remove").forEach((button) => {
+    button.addEventListener("click", removeCartItem);
+  });
 }
 
 function cartItemTemplate(item) {
@@ -21,10 +26,26 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+    <input type="hidden" class="cart-item-id" value="${item.Id}">
+  <button class="cart-card__remove">X</button>
 </li>`;
 
   return newItem;
 }
 
+function removeCartItem(event) {
+  const button = event.target;
+  const itemId = button.parentElement.querySelector(".cart-item-id").value;
+  console.log("Removing item with ID:", itemId);
+
+  // Remove the item from the cart in local storage
+  let cart = getLocalStorage("so-cart") || [];
+  cart = cart.filter((item) => item.Id !== itemId);
+  setLocalStorage("so-cart", cart);
+
+  // Re-render the cart contents
+  renderCartContents();
+  cartCount();
+}
 renderCartContents();
 cartCount();
