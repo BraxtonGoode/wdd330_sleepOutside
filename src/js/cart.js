@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
- // adding `|| []` so when the cart is empty, we don't get a null value for the cartItems
+  // adding `|| []` so when the cart is empty, we don't get a null value for the cartItems
   const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
@@ -12,7 +12,6 @@ function renderCartContents() {
     button.addEventListener("click", removeCartItem);
   });
 }
-
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -40,14 +39,11 @@ function removeCartItem(event) {
   const button = event.target;
   const itemId = button.parentElement.querySelector(".cart-item-ID").value;
 
-
   const cartItems = getLocalStorage("so-cart");
   const newCart = cartItems.filter((item) => item.Id !== itemId);
   setLocalStorage("so-cart", newCart);
 
   renderCartContents();
 }
-
-
 
 renderCartContents();
