@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, cartCount } from "./utils.mjs";
 
 function renderCartContents() {
   // adding `|| []` so when the cart is empty, we don't get a null value for the cartItems
@@ -27,3 +27,4 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+cartCount();
