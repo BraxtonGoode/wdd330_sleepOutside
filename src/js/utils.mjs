@@ -29,9 +29,32 @@ export function getParam(key) {
 }
 
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(templateFn);
   if (clear) {
     parentElement.innerHTML = "";
+  };
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+// Cart count indicator
+export function cartCount() {
+  const cartIndicator = document.querySelector("sup");
+  const currentCart = getLocalStorage("so-cart");
+  let count = 0;
+  
+  try {
+      if (currentCart !== null) {
+          
+          currentCart.forEach(i => {
+              count++;
+          });
+          cartIndicator.classList.add("cart-count");
+          cartIndicator.textContent = count;
+      }
+      if (count <= 0) {
+          cartIndicator.classList.remove("cart-count");
+      }
+  } catch {
+      console.error("Error in cartCount() if-statement.");
   }
-    const html = list.map(templateFn);
-    parentElement.insertAdjacentHTML(position, html.join(""));
 }

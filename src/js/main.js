@@ -1,13 +1,11 @@
-import ProductList from "./ProductList.mjs";
 import ProductData from "./ProductData.mjs";
+import ProductList from "./ProductList.mjs";
+import { cartCount } from "./utils.mjs";
 
-// create the initial datasource to use in the product listing to tents
 const dataSource = new ProductData("tents");
+const element = document.querySelector(".product-list");
+const list = new ProductList("Tents", dataSource, element);
 
-// get the dom object for the parent html element where the products will be inserted
-const htmlElement = document.querySelector(".product-list");
+list.init();
 
-// use `.product-list` class selector to select the <ul> tag
-// then await the `init()` method to open the thread
-const productList = new ProductList(dataSource, htmlElement, dataSource);
-await productList.init();
+cartCount();

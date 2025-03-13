@@ -109,7 +109,19 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-
+.cart a {
+  text-decoration: none;
+}
+.cart-count {
+  background-color: #e5aa72;
+  color: #592c85;
+  border-radius: 50%;
+  padding: 0.1rem 0.3rem;
+  position: relative;
+  font-size: 12px;
+  top: -10px;
+  left: 35px;
+}
 /* End cart icon styles */
 
 .mission {
