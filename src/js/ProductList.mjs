@@ -23,9 +23,9 @@ function productCardTemplate(product) {
 // export this class so that it can be used multiple places
 // but for now, the main.js file
 export default class ProductList {
-  constructor(dataSource, elementSelector) {
+  constructor(dataSource, htmlElement) {
     this.dataSource = dataSource;
-    this.listElement = document.querySelector(elementSelector);
+    this.htmlElement = htmlElement;
   }
 
   // initialize the datasource to get the data and call render
@@ -38,6 +38,6 @@ export default class ProductList {
   // but added `clear` for when this class wants to utilize
   // it in the utils function
   renderList(list, clear = false) {
-      renderListWithTemplate(productCardTemplate, this.listElement, list, undefined, clear);
+      renderListWithTemplate(productCardTemplate, this.htmlElement, list, undefined, clear);
   }
 }
