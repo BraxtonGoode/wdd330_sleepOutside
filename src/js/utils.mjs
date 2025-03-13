@@ -27,3 +27,11 @@ export function getParam(key) {
   const queryParams = new URLSearchParams(queryString);
   return queryParams.get(key);
 }
+
+export function renderListFromTemplate(templateFn, containerElement, products, position, clear = false) {
+  const htmlString = products.map((product) => templateFn(product)).join("");
+  if (clear) {
+      containerElement.innerHTML = "";
+  }
+  containerElement.insertAdjacentHTML(position, htmlString);
+}
