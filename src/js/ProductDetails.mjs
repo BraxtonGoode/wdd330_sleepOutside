@@ -1,4 +1,4 @@
-﻿import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+﻿import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
 
 function getProductCard(product) {
   return `
@@ -41,6 +41,7 @@ export default class ProductDetails {
     cart.push(this.product);
     // set the cart array back to local storage
     setLocalStorage("so-cart", cart);
+    cartCount(); // Everytime something is added to cart, the quantity indicator updates.
   }
 
   renderProductDetails(selector) {

@@ -27,8 +27,6 @@ export default class ProductList {
         this.renderList(list);
     }
     renderList(list) {
-        console.log(this.listElement);
-        console.log(list);
         renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 }

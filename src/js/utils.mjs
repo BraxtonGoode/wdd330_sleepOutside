@@ -35,3 +35,25 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   };
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+// Cart count indicator
+export function cartCount() {
+  const cartIndicator = document.querySelector("sup");
+  const currentCart = getLocalStorage("so-cart");
+  console.log(currentCart);
+  try {
+      if (currentCart !== null) {
+          let count = 0;
+          currentCart.forEach(i => {
+              count++;
+          });
+          cartIndicator.classList.add("cart-count");
+          cartIndicator.textContent = count;
+      }
+      if (count <= 0) {
+          cartIndicator.classList.remove("cart-count");
+      }
+  } catch {
+      console.error("Error in cartCount() if-statement.");
+  }
+}
