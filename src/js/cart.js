@@ -1,16 +1,5 @@
 import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
 
-function renderCartContents() {
-  // adding `|| []` so when the cart is empty, we don't get a null value for the cartItems
-  const cartItems = getLocalStorage("so-cart") || [];
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-
-  // Add event listeners to remove buttons
-  document.querySelectorAll(".cart-card__remove").forEach((button) => {
-    button.addEventListener("click", removeCartItem);
-  });
-}
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -32,6 +21,35 @@ function cartItemTemplate(item) {
 
   return newItem;
 }
+//updates the cart html; will initialize it too if the page wasn't loaded already
+function updateCartHTML(cartItems) {
+  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  // Add event listeners to remove buttons
+  document.querySelectorAll(".cart-card__remove").forEach((button) => {
+    button.addEventListener("click", removeCartItem);
+  });
+
+  if (cartItems.length > 0) {
+    const totalCost = cartItems.reduce(
+      (previous, current) => previous + current.ListPrice,
+      0,
+    );
+    document.querySelector("#total-cost").textContent =
+      `$${totalCost.toLocaleString()}`;
+    document.querySelector(".cart-footer").classList.remove("hidden");
+  } else {
+    document.querySelector(".cart-footer").classList.add("hidden");
+  }
+
+  cartCount();
+}
+function renderCartContents() {
+  // adding `|| []` so when the cart is empty, we don't get a null value for the cartItems
+  const cartItems = getLocalStorage("so-cart") || [];
+  updateCartHTML(cartItems);
+}
 
 function removeCartItem(event) {
   const button = event.target;
@@ -45,7 +63,5 @@ function removeCartItem(event) {
 
   // Re-render the cart contents
   renderCartContents();
-  cartCount();
 }
 renderCartContents();
-cartCount();
