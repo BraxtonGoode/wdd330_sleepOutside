@@ -12,8 +12,11 @@ function updateCartHTML(cartItems) {
 
   if (cartItems.length > 0) {
     const totalCost = cartItems.reduce(
-      (previous, current) => previous + current.ListPrice, 0);
-    document.querySelector("#total-cost").textContent =`$${totalCost.toLocaleString()}`;
+      (previous, current) => previous + current.ListPrice,
+      0,
+    );
+    document.querySelector("#total-cost").textContent =
+      `$${totalCost.toLocaleString()}`;
     document.querySelector(".cart-footer").classList.remove("hidden");
   } else {
     document.querySelector(".cart-footer").classList.add("hidden");
@@ -26,7 +29,6 @@ function renderCartContents() {
   // adding `|| []` so when the cart is empty, we don't get a null value for the cartItems
   const cartItems = getLocalStorage("so-cart") || [];
   updateCartHTML(cartItems);
-  
 }
 
 function cartItemTemplate(item) {
@@ -62,6 +64,5 @@ function removeCartItem(event) {
 
   // Re-render the cart contents
   renderCartContents();
-  
 }
 renderCartContents();
