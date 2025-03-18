@@ -254,3 +254,9 @@ footer {
 .hidden {
   display: none;
 }
+
+.product-card__retail {
+  color: var(--light-grey);
+  text-decoration: line-through;
+  padding-right: 1em;
+}
