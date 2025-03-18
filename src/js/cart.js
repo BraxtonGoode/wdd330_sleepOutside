@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, cartCount, loadHeaderFooter } from "./utils.mjs";
 
 
 function cartItemTemplate(item) {
@@ -64,4 +64,5 @@ function removeCartItem(event) {
   // Re-render the cart contents
   renderCartContents();
 }
+await loadHeaderFooter();
 renderCartContents();
