@@ -256,6 +256,7 @@ footer {
 }
 
 .product-card__retail {
+  color: var(--light-grey);
   text-decoration: line-through;
   padding-right: 1em;
 }
