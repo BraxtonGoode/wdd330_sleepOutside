@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, cartCount, loadHeaderFooter } from "./utils.mjs";
 
 //updates the cart html; will initialize it too if the page wasn't loaded already
 function updateCartHTML(cartItems) {
@@ -65,4 +65,5 @@ function removeCartItem(event) {
   // Re-render the cart contents
   renderCartContents();
 }
+await loadHeaderFooter();
 renderCartContents();

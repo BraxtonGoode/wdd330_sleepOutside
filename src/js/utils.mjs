@@ -35,7 +35,19 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   };
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
+  };
+}
+async function loadTemplate(path) {
+  
+  const response = await fetch(path);
 
+  const template = await response.text();
+  return template;
+}
 // Cart count indicator
 export function cartCount() {
   const cartIndicator = document.querySelector("sup");
@@ -53,8 +65,19 @@ export function cartCount() {
       }
       if (count <= 0) {
           cartIndicator.classList.remove("cart-count");
+          cartIndicator.innerText = "";
       }
   } catch {
       console.error("Error in cartCount() if-statement.");
   }
+}
+
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("/partials/header.html");
+  const footerTemplate = await loadTemplate("/partials/footer.html");
+  const headerElement = document.querySelector("header");
+  const footerElement = document.querySelector("footer");
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+  cartCount();
 }
