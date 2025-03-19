@@ -5,9 +5,9 @@ function productCardTemplate(product) {
     ? ""
     : "hidden";
     return `<li class="product-card">
-            <a href="product_pages/?product=${product.Id}">
+            <a href="/product_pages/?product=${product.Id}">
               <img
-                src="${product.Image}"
+                src="${product.Images.PrimaryMedium}"
                 alt="Image of ${product.Name}"
               />
               <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -27,8 +27,9 @@ export default class ProductList {
     }
     async init() {
         // Fetch data promise.
-        const list = await this.dataSource.getData();
+        const list = await this.dataSource.getData(this.category);
         this.renderList(list);
+        document.querySelector(".title").textContent = `${this.category.charAt(0).toUpperCase() + this.category.slice(1)}`;
     }
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list);
