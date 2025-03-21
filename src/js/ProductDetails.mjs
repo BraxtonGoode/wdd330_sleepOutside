@@ -35,10 +35,27 @@ export default class ProductDetails {
 
   //get cart from local storage, add the product and update localstorage
   addProductToCart() {
+    // Declaring duplicate, to check for duplicate items
+    let duplicate = false;
     // get the cart from local storage; initialize array if necessary
     let cart = getLocalStorage("so-cart") || [];
-    // push the product into the cart array
-    cart.push(this.product);
+    let item = this.product; // simplify the variable name to work with
+    // give quanitiy variable if none exists
+    if (item.Quantity == undefined) {
+      item.Quantity = 1;
+    } 
+    // cycle through every item in the cart, to see if ID is already in cart
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].Id == item.Id) {
+        cart[i].Quantity += 1;
+        duplicate = true;
+        cartCount()
+      } 
+    }
+    // push the product into the cart array if it isn't already there.
+    if (duplicate == false) {
+      cart.push(item);
+    }
     // set the cart array back to local storage
     setLocalStorage("so-cart", cart);
     cartCount(); // Everytime something is added to cart, the quantity indicator updates.

@@ -35,26 +35,41 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   };
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
+  };
+}
+async function loadTemplate(path) {
 
+  const response = await fetch(path);
+
+  const template = await response.text();
+  return template;
+}
 // Cart count indicator
-export function cartCount() {
+export function cartCount(count = 0) {
   const cartIndicator = document.querySelector("sup");
   const currentCart = getLocalStorage("so-cart");
-  let count = 0;
-  
+
   try {
-      if (currentCart !== null) {
+    // if cart isn't empty...
+    if (currentCart !== null) {
+        // cycle through and count each item
+        currentCart.forEach(i => {
           
-          currentCart.forEach(i => {
-              count++;
-          });
-          cartIndicator.classList.add("cart-count");
-          cartIndicator.textContent = count;
+          count += parseInt(i.Quantity); // parsing int to prevent leading 0
+        });
+        cartIndicator.classList.add("cart-count");
+        // update html
+        cartIndicator.innerText = count;
       }
       if (count <= 0) {
           cartIndicator.classList.remove("cart-count");
+          cartIndicator.innerText = "";
       }
-  } catch {
-      console.error("Error in cartCount() if-statement.");
+    } catch {
+    console.error("Error in cartCount() if-statement.");
   }
 }
