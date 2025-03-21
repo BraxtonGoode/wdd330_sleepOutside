@@ -268,5 +268,13 @@ footer {
 }
 
 .categories {
+  align-self: center;
+  justify-self: center;
   display: flex;
+  column-gap: 2em;
+  margin: 2em 0;
+}
+
+.categories img {
+  width: 8em;
 }
