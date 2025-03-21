@@ -1,0 +1,10 @@
+[
+    {
+      "message": "Check out our latest new products!",
+      "type": "alert"
+    },
+    {
+      "message": "They are going on sale right now!",
+      "type": "alert"
+    }
+  ]
