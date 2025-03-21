@@ -1,11 +1,15 @@
-import { getLocalStorage, setLocalStorage, cartCount, loadHeaderFooter } from "./utils.mjs";
-
+import {
+  getLocalStorage,
+  setLocalStorage,
+  cartCount,
+  loadHeaderFooter,
+} from "./utils.mjs";
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -54,7 +58,6 @@ function renderCartContents() {
 function removeCartItem(event) {
   const button = event.target;
   const itemId = button.parentElement.querySelector(".cart-item-id").value;
-  console.log("Removing item with ID:", itemId);
 
   // Remove the item from the cart in local storage
   let cart = getLocalStorage("so-cart") || [];
