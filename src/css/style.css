@@ -131,9 +131,15 @@ button {
   max-width: 600px;
   margin: auto;
 }
+
 .products {
   padding: 0.5em;
 }
+
+.products h2 {
+  text-transform: capitalize;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
@@ -259,4 +265,8 @@ footer {
   color: var(--light-grey);
   text-decoration: line-through;
   padding-right: 1em;
+}
+
+.categories {
+  display: flex;
 }

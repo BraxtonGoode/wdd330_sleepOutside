@@ -9,10 +9,12 @@ export function qs(selector, parent = document) {
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -32,22 +34,22 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   const htmlStrings = list.map(templateFn);
   if (clear) {
     parentElement.innerHTML = "";
-  };
+  }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
 export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.innerHTML = template;
   if (callback) {
     callback(data);
-  };
+  }
 }
-async function loadTemplate(path) {
-  
-  const response = await fetch(path);
 
-  const template = await response.text();
-  return template;
+async function loadTemplate(path) {
+  const response = await fetch(path);
+  return await response.text();
 }
+
 // Cart count indicator
 export function cartCount() {
   const cartIndicator = document.querySelector("sup");
