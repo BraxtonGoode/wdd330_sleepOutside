@@ -25,7 +25,7 @@ export default class ProductDetails {
 
   async init() {
     // get the product from the product id pass into the constructor
-    this.product = await this.dataSource.findProductById(this.productId);console.log(this.product)
+    this.product = await this.dataSource.findProductById(this.productId);
     // create the product detail page from the dynamic html
     this.renderProductDetails("main");
     // find the add to cart button and wire up the click event
