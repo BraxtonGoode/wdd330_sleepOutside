@@ -1,12 +1,15 @@
 ﻿import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
 
 function getProductCard(product) {
+  const showDiscount = product.SuggestedRetailPrice > product.FinalPrice;
   return `
         <section class="product-detail">
           <h3>${product.Brand.Name}</h3>
           <h2 class="divider">${product.NameWithoutBrand}</h2>
           <img class="divider" src="${product.Images.PrimaryLarge}" alt="${product.NameWithoutBrand}">
-          <p class="product-card__price">${product.FinalPrice}</p>
+          ${showDiscount ? `<p class="product__retail">$${product.SuggestedRetailPrice.toFixed(2)}</p>` : ""}
+          <p class="product__price">$${product.FinalPrice}</p>
+          ${showDiscount ? `<p class="product-card__discount-amount">Save $${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)}</p>` : ""}
           <p class="product__color">${product.Colors[0].ColorName}</p>
           <p class="product__description">${product.DescriptionHtmlSimple}</p>
           <div class="product-detail__add">

@@ -6,6 +6,7 @@ import {
 } from "./utils.mjs";
 
 function cartItemTemplate(item) {
+  const showDiscount = item.SuggestedRetailPrice > item.FinalPrice;
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
@@ -18,8 +19,9 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
+  ${showDiscount ? `<p class="cart-card__retail">$${item.SuggestedRetailPrice.toFixed(2)}</p>` : ""}
   <p class="cart-card__price">$${item.FinalPrice}</p>
-    <input type="hidden" class="cart-item-id" value="${item.Id}">
+  <input type="hidden" class="cart-item-id" value="${item.Id}">
   <button class="cart-card__remove">X</button>
 </li>`;
 
