@@ -45,7 +45,7 @@ function updateCartHTML(cartItems) {
 
   if (cartItems.length > 0) {
     const totalCost = cartItems.reduce(
-      (previous, current) => previous + current.ListPrice,
+      (previous, current) => previous + current.ListPrice * current.Quantity,
       0,
     );
     document.querySelector("#total-cost").textContent =
@@ -106,6 +106,7 @@ function changeCartItemQuantity(event) {
       }
     }
   }
+  updateCartHTML(cart);
 }
 await loadHeaderFooter();
 renderCartContents();
