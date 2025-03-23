@@ -49,27 +49,29 @@ async function loadTemplate(path) {
   return template;
 }
 // Cart count indicator
-export function cartCount() {
+export function cartCount(count = 0) {
   const cartIndicator = document.querySelector("sup");
   const currentCart = getLocalStorage("so-cart");
-  let count = 0;
-  
+
   try {
-      if (currentCart !== null) {
+    // if cart isn't empty...
+    if (currentCart !== null) {
+        // cycle through and count each item
+        currentCart.forEach(i => {
           
-          currentCart.forEach(i => {
-              count++;
-          });
-          cartIndicator.classList.add("cart-count");
-          cartIndicator.textContent = count;
+          count += parseInt(i.Quantity); // parsing int to prevent leading 0
+        });
+        cartIndicator.classList.add("cart-count");
+        // update html
+        cartIndicator.innerText = count;
       }
       if (count <= 0) {
           cartIndicator.classList.remove("cart-count");
           cartIndicator.innerText = "";
       }
-  } catch {
-      console.error("Error in cartCount() if-statement.");
-  }
+    } catch {
+    console.error("Error in cartCount() if-statement.");
+    }
 }
 
 export async function loadHeaderFooter() {

@@ -122,6 +122,13 @@ button {
   top: -10px;
   left: 35px;
 }
+.cart-card__quantity {
+  grid-row: 1;
+  grid-column: 3;
+  max-width: 40%;
+  height: 1.75rem;
+  text-align: center;
+}
 /* End cart icon styles */
 
 .mission {
