@@ -49,13 +49,14 @@ export default class ProductDetails {
       if (cart[i].Id == item.Id) {
         cart[i].Quantity += 1;
         duplicate = true;
-        cartCount()
       } 
     }
     // push the product into the cart array if it isn't already there.
     if (duplicate == false) {
       cart.push(item);
     }
+    setLocalStorage("so-cart", cart);
+    cartCount()
   }
 
   renderProductDetails(selector) {

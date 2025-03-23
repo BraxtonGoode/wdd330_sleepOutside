@@ -58,7 +58,6 @@ export function cartCount(count = 0) {
     if (currentCart !== null) {
         // cycle through and count each item
         currentCart.forEach(i => {
-          
           count += parseInt(i.Quantity); // parsing int to prevent leading 0
         });
         cartIndicator.classList.add("cart-count");

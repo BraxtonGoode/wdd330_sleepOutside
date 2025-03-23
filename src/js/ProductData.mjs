@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_SERVER_URL;
+const baseURL = import.meta.env.VITE_SERVER_URL; // For testing (Ella needs this) "//server-nodejs.cit.byui.edu:3000/"
 
 function convertToJson(res) {
   if (res.ok) {
