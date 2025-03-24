@@ -17,7 +17,7 @@ function convertToJson(res) {
 //  The function fetches the alert data and then calls the produceAlerts function to create the alert section.  
   async function fetchAlertData() {
     try {
-      const response = await fetch('/public/json/alert.json');
+      const response = await fetch('/json/alert.json');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

@@ -194,6 +194,16 @@ button {
   width: 100%;
 }
 
+.product__retail {
+  color: var(--light-grey);
+  text-decoration: line-through;
+  margin: 0;
+}
+.product__price {
+  margin-block: 0.5rem;
+  font-size: 2rem;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
@@ -225,8 +235,15 @@ button {
   grid-column: 3;
 }
 
-.cart-card__price {
+.cart-card__retail {
   grid-row: 2;
+  grid-column: 3;
+  color: var(--light-grey);
+  text-decoration: line-through;
+}
+
+.cart-card__price {
+  grid-row: 3;
   grid-column: 3;
 }
 .cart-card__remove {

@@ -6,6 +6,7 @@ import {
 } from "./utils.mjs";
 
 function cartItemTemplate(item) {
+  const showDiscount = item.SuggestedRetailPrice > item.FinalPrice;
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
@@ -20,8 +21,9 @@ function cartItemTemplate(item) {
   <label> qty:
   <input name="quantity" type="number" class="cart-card__quantity" value="${item.Quantity}">
   </label>
+  ${showDiscount ? `<p class="cart-card__retail">$${item.SuggestedRetailPrice.toFixed(2)}</p>` : ""}
   <p class="cart-card__price">$${item.FinalPrice}</p>
-    <input type="hidden" class="cart-item-id" value="${item.Id}">
+  <input type="hidden" class="cart-item-id" value="${item.Id}">
   <button class="cart-card__remove">X</button>
 </li>`;
 
@@ -43,7 +45,7 @@ function updateCartHTML(cartItems) {
 
   if (cartItems.length > 0) {
     const totalCost = cartItems.reduce(
-      (previous, current) => previous + current.ListPrice,
+      (previous, current) => previous + current.ListPrice * current.Quantity,
       0,
     );
     document.querySelector("#total-cost").textContent =
@@ -104,6 +106,7 @@ function changeCartItemQuantity(event) {
       }
     }
   }
+  updateCartHTML(cart);
 }
 await loadHeaderFooter();
 renderCartContents();
