@@ -6,7 +6,13 @@ checkoutProcess.init();
 
 document.querySelector("#checkout").addEventListener("submit", e => {
     e.preventDefault();
-    checkoutProcess.checkout(e.target);
+    const form = document.forms[0]
+    const checkValid = form.checkValidity();
+    form.reportValidity();
+    if (checkValid){
+        checkoutProcess.checkout(e.target);
+    }
+    
 });
 
 

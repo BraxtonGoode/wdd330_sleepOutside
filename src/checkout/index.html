@@ -20,27 +20,29 @@
         <h2>Review & Place your Order</h2>
         <form action="" id="checkout">
           <label for="fname">First Name:</label>
-          <input type="text" id="fname" name="fname" required />
+          <input type="text" id="fname" name="fname" required placeholder="Billy"/>
           <label for="lname">Last Name:</label>
-          <input type="text" id="lname" name="lname" required />
+          <input type="text" id="lname" name="lname" required  placeholder="Bob"/>
  
           <!-- address -->
           <label for="street">Street address:</label>
-          <input type="text" id="street" name="street" required />
+          <input type="text" id="street" name="street" required placeholder="3333 E. Rose Rd."/>
           <label for="city">City:</label>
-          <input type="text" id="city" name="city" required />
+          <input type="text" id="city" name="city" required placeholder="Chicago"/>
           <label for="state">State:</label>
-          <input type="text" id="state" name="state" required />
+          <input type="text" id="state" name="state" required placeholder="illinois"/>
           <label for="zip">Zip:</label>
-          <input type="text" id="zip" name="zip" required />
+          <input type="text" id="zip" name="zip" required placeholder="54290"/>
  
           <!-- Payment -->
           <label for="cardNumber">Credit Card:</label>
-          <input type="text" id="cardNumber" name="cardNumber" required />
+          <input type="text" id="cardNumber" name="cardNumber" required placeholder="1234123412341234" pattern="^\d{16}$" title="Please enter a valid 16-digit credit card number"/>
           <label for="expiration">Expiration Date:</label>
-          <input type="text" id="expiration" name="expiration" required />
+          <input type="text" id="expiration" name="expiration" required placeholder="01/31" pattern="^(0[1-9]|1[0-2])\/\d{2}$" 
+          title="Please enter a valid expiration date in the format MM/YY"/>
           <label for="code">CVV:</label>
-          <input type="text" id="code" name="code" required />
+          <input type="text" id="code" name="code" required  placeholder="123" pattern="^\d{3}$"
+          />
  
           <button type="submit">Place Order</button>
         </form>
