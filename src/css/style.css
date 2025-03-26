@@ -103,6 +103,7 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  border-radius: 6px;
 }
 
 .divider {
@@ -123,7 +124,7 @@ button {
 }
 
 .cart:hover svg {
-  fill: gray;
+  fill: #808080;
 }
 
 .cart a {
@@ -232,11 +233,22 @@ button {
 }
 
 /* Start cart list card styles */
+.checkout-button a{
+  color:#fff;
+  text-decoration: none;
+}
+.checkout-button {
+  width: 100%;
+  margin: 1rem auto;
+}
+.checkout-button:hover {
+  box-shadow: 2px 2px 1px 3px rgba(0, 0, 0, 0.89);
+}
 .cart-card {
+  width: 100%;
   display: grid;
   grid-template-columns: 25% auto 15% 10%;
   font-size: var(--small-font);
-  /* max-height: 120px; */
   align-items: center;
 }
 
@@ -441,7 +453,7 @@ footer {
 
 fieldset {
   display: grid;
-  grid-template-columns: 1;
+  grid-template-columns: 1fr;
   border: 1px solid var(--primary-color);
   border-radius: 6% 10%;
   margin-bottom: 1rem;
