@@ -247,9 +247,10 @@ button {
 .cart-card {
   width: 100%;
   display: grid;
-  grid-template-columns: 25% auto 15% 10%;
+  grid-template-columns: 10% auto 15% 10%;
   font-size: var(--small-font);
   align-items: center;
+  padding-top: 0.5rem;
 }
 
 .cart-card__image {
@@ -264,6 +265,7 @@ button {
 .cart-card .card__name {
   grid-row: 1;
   grid-column: 2;
+  margin-right: 5rem;
 }
 
 .cart-card__color {
@@ -321,7 +323,7 @@ button {
 
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    /* grid-template-columns: 150px auto 15%; */
   }
 }
 
