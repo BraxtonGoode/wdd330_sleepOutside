@@ -16,7 +16,6 @@ document.querySelector("#checkout").addEventListener("submit", async (e) => {
       setLocalStorage("so-cart", []);
       window.location.href = "/checkout/success.html?orderNumber=" + response.orderId;
     } catch (err) {
-      // TODO show error banner
       // loop through map keys and show values in red banners
       Object.keys(err.message).forEach((key) => {
         alertMessage(err.message[key], true);
