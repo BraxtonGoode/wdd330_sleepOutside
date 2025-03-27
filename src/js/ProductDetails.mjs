@@ -46,13 +46,13 @@ export default class ProductDetails {
     // give quanitiy variable if none exists
     if (item.Quantity == undefined) {
       item.Quantity = 1;
-    } 
+    }
     // cycle through every item in the cart, to see if ID is already in cart
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].Id == item.Id) {
         cart[i].Quantity += 1;
         duplicate = true;
-      } 
+      }
     }
     // push the product into the cart array if it isn't already there.
     if (duplicate == false) {
@@ -60,6 +60,11 @@ export default class ProductDetails {
     }
     setLocalStorage("so-cart", cart);
     cartCount()
+    // Cart animation
+    document.querySelector("svg").classList.toggle("anim");
+    setTimeout(() => {
+      document.querySelector("svg").classList.toggle("anim"); //Untoggle class so it will play when clicked a second time
+    }, 1200);
   }
 
   renderProductDetails(selector) {
