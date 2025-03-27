@@ -160,6 +160,23 @@ button {
   padding: 0.5em;
   text-align: center;
 }
+
+.alert-messages {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+.alert-message {
+  display: flex;
+  padding: 1rem 5rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #bbb;
+  background-color: #fa5;
+}
+.alert-message button {
+  margin: 0;
+}
 /* End of alert section */
 /* Styles for product lists */
 .product-card {
@@ -307,7 +324,7 @@ footer {
   align-items: center;
   text-align: center;
   flex: auto;
-  
+
   padding: 0.5rem 2.5rem 0.1rem;
   border: 1px solid black;
   border-radius: 4%;

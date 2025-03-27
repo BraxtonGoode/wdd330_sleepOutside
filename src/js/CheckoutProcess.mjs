@@ -58,7 +58,7 @@ export default class CheckoutProcess {
             quantity: item.Quantity,
         }));
     }
-    checkout(form) {
+    async checkout(form) {
         const formData = new FormData(form),
         convertedJSON = {};
 
@@ -72,8 +72,7 @@ export default class CheckoutProcess {
         convertedJSON.orderTotal = this.total;
         convertedJSON.orderDate = new Date().toISOString();
         const externalServices = new ExternalServices();
-        externalServices.sendOrder(convertedJSON);
-        return convertedJSON;
+        return await externalServices.sendOrder(convertedJSON);
     }
 }
 
