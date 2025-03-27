@@ -49,10 +49,6 @@ function getColorSwatches(colors) {
   return swatches;
 }
 
-function selectColor(colorCode) {
-  document.getElementById("product-color").value = colorCode;
-}
-
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
