@@ -95,7 +95,6 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 /* End utility classes */
-
 /* Cart icon styles */
 .cart {
   padding-top: 1em;
@@ -183,7 +182,33 @@ button {
   font-size: 1em;
 }
 /* End product list card */
-
+/* Start search bar */
+.searchDiv {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1em;
+  gap: 0;
+}
+.searchForm {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+  gap: 0;
+}
+.searchForm input {
+  padding: 0.25em;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--light-grey);
+}
+.searchForm button {
+  padding: 0.25em .75em;
+  background-color: var(--secondary-color);
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+/* end search bar */
 .product-detail {
   padding: 1em;
   max-width: 500px;
