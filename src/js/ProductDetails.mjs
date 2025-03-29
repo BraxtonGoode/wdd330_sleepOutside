@@ -1,7 +1,10 @@
 ﻿import { getLocalStorage, setLocalStorage, cartCount } from "./utils.mjs";
 
+
 function getProductCard(product) {
   const showDiscount = product.SuggestedRetailPrice > product.FinalPrice;
+  // color swatches
+  let colorSwatches = getColorSwatches(product.Colors);
   return `
         <section class="product-detail">
           <h3>${product.Brand.Name}</h3>
@@ -10,13 +13,40 @@ function getProductCard(product) {
           ${showDiscount ? `<p class="product__retail">$${product.SuggestedRetailPrice.toFixed(2)}</p>` : ""}
           <p class="product__price">$${product.FinalPrice}</p>
           ${showDiscount ? `<p class="product-card__discount-amount">Save $${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)}</p>` : ""}
-          <p class="product__color">${product.Colors[0].ColorName}</p>
+          <input id="product-color" type="hidden" value="${product.Colors[0].ColorCode}" />
+          <div class="product__color">            
+            ${colorSwatches}
+          </div>
           <p class="product__description">${product.DescriptionHtmlSimple}</p>
           <div class="product-detail__add">
               <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
           </div>
         </section>
     `;
+}
+
+function getColorSwatches(colors) {
+  let swatches = "";
+  colors.forEach((color, index) => {
+    swatches += `
+      <figure>      
+        <image src="${color.ColorChipImageSrc}"            
+          alt="${color.ColorName}" 
+          title="${color.ColorName}" 
+          onclick="
+            document.getElementById('product-color').value = '${color.ColorCode}';
+            this.parentNode.parentNode.querySelectorAll('img').forEach((img) => {
+              img.classList.remove('color-selected');
+            });
+            this.classList.add('color-selected');
+          "          
+          class='${index === 0 ? "color-selected" : ""}'
+          />
+        <figcaption>${color.ColorName}</figcaption>
+      </figure>
+    `;
+  });
+  return swatches;
 }
 
 export default class ProductDetails {
@@ -46,13 +76,13 @@ export default class ProductDetails {
     // give quanitiy variable if none exists
     if (item.Quantity == undefined) {
       item.Quantity = 1;
-    } 
+    }
     // cycle through every item in the cart, to see if ID is already in cart
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].Id == item.Id) {
         cart[i].Quantity += 1;
         duplicate = true;
-      } 
+      }
     }
     // push the product into the cart array if it isn't already there.
     if (duplicate == false) {
@@ -60,6 +90,11 @@ export default class ProductDetails {
     }
     setLocalStorage("so-cart", cart);
     cartCount()
+    // Cart animation
+    document.querySelector("svg").classList.toggle("anim");
+    setTimeout(() => {
+      document.querySelector("svg").classList.toggle("anim"); //Untoggle class so it will play when clicked a second time
+    }, 1200);
   }
 
   renderProductDetails(selector) {

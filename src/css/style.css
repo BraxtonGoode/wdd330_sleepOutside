@@ -109,7 +109,6 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
-
 /* End utility classes */
 
 /* Cart icon styles */
@@ -140,6 +139,24 @@ button {
   font-size: 12px;
   top: -10px;
   left: 35px;
+  z-index: 1;
+}
+.anim {
+  animation-name: cartAddition;
+  animation-duration: 0.4s;
+  animation-iteration-count: 3;
+  animation-direction: alternate;
+}
+@keyframes cartAddition {
+  0% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: rotate(-20deg);
+  }
 }
 
 .cart-card__quantity {
@@ -210,6 +227,34 @@ button {
 }
 
 /* End product list card */
+/* Start search bar */
+.searchDiv {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1em;
+  gap: 0;
+}
+
+.searchForm {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+  gap: 0;
+}
+.searchForm input {
+  padding: 0.25em;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--light-grey);
+}
+.searchForm button {
+  padding: 0.25em .75em;
+  background-color: var(--secondary-color);
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+/* end search bar */
 
 .product-detail {
   padding: 1em;
@@ -298,6 +343,8 @@ button {
 
 .cart-footer {
   padding-inline: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .cart-footer h2 {
@@ -379,7 +426,6 @@ footer {
   width: 100px;
   height: 100px;
 }
-
 /* End Home Page Categories */
 /* Begin Checkout css */
 .checkout-grid {
@@ -500,3 +546,42 @@ input {
 
 /* Form End */
 /* End Checkout css */
+.alert-banner {
+  margin: 0.5em 0;
+  padding: 0 0.8em;
+  display: flex;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+.alert-banner p {
+  color: #f00;
+}
+.alert-banner img {
+  width: 2em;
+  margin-left: auto;
+  order: 2;
+}
+
+.product__color {
+  display: flex;
+}
+
+.product__color img {
+  width: 15em;
+}
+
+.product__color img:hover {
+  border: 3px solid var(--secondary-color);
+}
+
+.product__color figure {
+  margin: 0.25em;
+}
+
+.product__color figcaption {
+  font-size: 0.7em;
+}
+
+.color-selected {
+  border: 3px solid var(--primary-color);
+}
