@@ -132,6 +132,24 @@ button {
   font-size: 12px;
   top: -10px;
   left: 35px;
+  z-index: 1;
+}
+.anim {
+  animation-name: cartAddition;
+  animation-duration: 0.4s;
+  animation-iteration-count: 3;
+  animation-direction: alternate;
+}
+@keyframes cartAddition {
+  0% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: rotate(-20deg);
+  }
 }
 
 .cart-card__quantity {
