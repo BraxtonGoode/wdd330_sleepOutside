@@ -343,4 +343,27 @@ footer {
   width: 2em;
   margin-left: auto;
   order: 2;
+
+.product__color {
+  display: flex;
+}
+
+.product__color img {
+  width: 15em;
+}
+
+.product__color img:hover {
+  border: 3px solid var(--secondary-color);
+}
+
+.product__color figure {
+  margin: 0.25em;
+}
+
+.product__color figcaption {
+  font-size: 0.7em;
+}
+
+.color-selected {
+  border: 3px solid var(--primary-color);
 }
