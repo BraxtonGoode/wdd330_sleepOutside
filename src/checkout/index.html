@@ -16,41 +16,69 @@
     <header class="divider"></header>
 
     <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-        <form action="" id="checkout">
-          <label for="fname">First Name:</label>
-          <input type="text" id="fname" name="fname" required />
-          <label for="lname">Last Name:</label>
-          <input type="text" id="lname" name="lname" required />
- 
-          <!-- address -->
-          <label for="street">Street address:</label>
-          <input type="text" id="street" name="street" required />
-          <label for="city">City:</label>
-          <input type="text" id="city" name="city" required />
-          <label for="state">State:</label>
-          <input type="text" id="state" name="state" required />
-          <label for="zip">Zip:</label>
-          <input type="text" id="zip" name="zip" required />
- 
-          <!-- Payment -->
-          <label for="cardNumber">Credit Card:</label>
-          <input type="text" id="cardNumber" name="cardNumber" required />
-          <label for="expiration">Expiration Date:</label>
-          <input type="text" id="expiration" name="expiration" required />
-          <label for="code">CVV:</label>
-          <input type="text" id="code" name="code" required />
- 
-          <button type="submit">Place Order</button>
-        </form>
-      </section>
-      <div class="order-summary">
-        <h4>Subtotal: <span id="subtotal"></span></h4>
-        <h4>Tax: <span id="tax"></span></h4>
-        <h4>Shipping Estimate: <span id="shippingEstimate"></span></h4>
-        <h4>Order Total: <span id="orderTotal"></span></h4>
+      <div class="checkout-grid">
+        <h2>Review & Place Your Order</h2>
+        <section class="products">
+          <form action="" id="checkout">
+            <!-- name -->
+            <fieldset>
+              <legend>Name</legend>
+              <label for="fname">First Name:</label>
+              <input type="text" id="fname" name="fname" placeholder="First Name" required />
+              <label for="lname">Last Name:</label>
+              <input type="text" id="lname" name="lname" placeholder="Last Name" required />
+            </fieldset>
+            <!-- address -->
+            <fieldset>
+              <legend>Address</legend>
+              <label for="street">Street address:</label>
+              <input type="text" id="street" name="street" placeholder="123 Easy St" required />
+              <label for="city">City:</label>
+              <input type="text" id="city" name="city" placeholder="Townville" required />
+              <label for="state">State:</label>
+              <input type="text" id="state" name="state" placeholder="AZ" required />
+              <label for="zip">Zip:</label>
+              <input type="text" id="zip" name="zip" placeholder="32345" required />
+            </fieldset>
+            <!-- Payment -->
+            <fieldset>
+              <legend>Payment</legend>
+              <label for="cardNumber">Credit Card:</label>
+              <input type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" required />
+              <label for="expiration">Expiration Date:</label>
+              <input type="text" id="expiration" name="expiration" placeholder="01/20" required />
+              <label for="code">CVV:</label>
+              <input type="text" id="code" name="code" placeholder="222" required />
+            </fieldset>
+          </form>
+        </section>
+        <section class="order-summary">
+          <h3>Order Summary</h3>
+          <hr id="firsthr">
+          <div>
+            <h4>Subtotal: </h4>
+            <span class="price" id="subtotal"></span>
+          </div>
+          <hr>
+          <div>
+            <h4>Tax:</h4>
+            <span class="price" id="tax"></span>
+          </div>
+          <hr>
+          <div>
+            <h4>Shipping Estimate:</h4>
+            <span class="price" id="shippingEstimate"></span>
+          </div>
+          <hr id="finalhr">
+          <div class="order-total">
+            <h4>Order Total:</h4>
+            <span class="price" id="orderTotal"></span>
+          </div>
+          <!-- Submit Button -->
+          <button id="PlaceOrder" type="submit" form="checkout">Place Order</button>
+        </section>
       </div>
+      
     </main>
 
     <footer></footer>
