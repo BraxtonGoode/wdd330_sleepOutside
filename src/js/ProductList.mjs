@@ -24,13 +24,34 @@ export default class ProductList {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
+        this.list = [];
     }
     async init() {
         // Fetch data promise.
         const list = await this.dataSource.getData(this.category);
+        this.list = list;
         this.renderList(list);
     }
+
+    filterList(searchValue) {
+    
+      if (!searchValue) {
+        // Show the full list if the search term is empty
+        this.renderList(this.list);
+        return;
+      }
+    
+      const filteredList = this.list.filter(item =>
+        item.Name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    
+      // Re-render the list with the filtered items
+      this.renderList(filteredList);
+    }
+
     renderList(list) {
+        // Clear the existing list
+        this.listElement.innerHTML = "";
         renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 }
