@@ -94,6 +94,10 @@ export async function loadHeaderFooter() {
   cartCount();
 }
 
+export function showBreadcrumbs(html) {
+  document.querySelector("#breadcrumbs").innerHTML = html;
+}
+
 export function alertMessage(message, scroll = true) {
   // find the main html element to add the banner to
   const main = document.querySelector("main");

@@ -1,6 +1,6 @@
 import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
-import { loadHeaderFooter, getParam } from "./utils.mjs";
+import { loadHeaderFooter, getParam, showBreadcrumbs } from "./utils.mjs";
 import Alert from "./alert.mjs";
 
 const category = getParam("category");
@@ -15,10 +15,9 @@ const element = document.querySelector(".product-list");
 const list = new ProductList(category, dataSource, element);
 const alertInstance = new Alert();
 
-list.init();
+await list.init();
 alertInstance.init();
 await loadHeaderFooter();
-
 
 const searchInput = document.querySelector("#search");
 const searchButton = document.querySelector("#searchButton");
@@ -36,6 +35,9 @@ if (searchInput && searchButton) {
       emptyList.textContent = "No items found.";
       list.listElement.appendChild(emptyList);
     }
+    showBreadcrumbs(
+      `${category.charAt(0).toUpperCase() + category.slice(1)} -> ${list.listElement.children.length} items`,
+    );
   };
 
   // Add event listener for button click
@@ -49,3 +51,7 @@ if (searchInput && searchButton) {
     }
   });
 }
+
+showBreadcrumbs(
+  `${category.charAt(0).toUpperCase() + category.slice(1)} -> ${list.list.length} items`,
+);
