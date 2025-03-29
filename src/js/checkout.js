@@ -1,5 +1,10 @@
 import CheckoutProcess from "./CheckoutProcess.mjs";
-import { loadHeaderFooter, setLocalStorage, alertMessage } from "./utils.mjs";
+import {
+  loadHeaderFooter,
+  setLocalStorage,
+  alertMessage,
+  showBreadcrumbs,
+} from "./utils.mjs";
 
 const checkoutProcess = new CheckoutProcess(
   document.querySelector(".order-summary"),
@@ -14,14 +19,16 @@ document.querySelector("#checkout").addEventListener("submit", async (e) => {
     try {
       const response = await checkoutProcess.checkout(e.target);
       setLocalStorage("so-cart", []);
-      window.location.href = "/checkout/success.html?orderNumber=" + response.orderId;
+      window.location.href =
+        "/checkout/success.html?orderNumber=" + response.orderId;
     } catch (err) {
       // loop through map keys and show values in red banners
       Object.keys(err.message).forEach((key) => {
         alertMessage(err.message[key], true);
-      })
+      });
     }
   }
 });
 
 await loadHeaderFooter();
+showBreadcrumbs("Checkout");

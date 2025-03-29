@@ -3,6 +3,7 @@ import {
   setLocalStorage,
   cartCount,
   loadHeaderFooter,
+  showBreadcrumbs,
 } from "./utils.mjs";
 
 function cartItemTemplate(item) {
@@ -54,6 +55,12 @@ function updateCartHTML(cartItems) {
   } else {
     document.querySelector(".cart-footer").classList.add("hidden");
   }
+
+  const itemsInCart = cartItems.reduce(
+    (prev, current) => prev + parseInt(current.Quantity),
+    0,
+  );
+  showBreadcrumbs(`Cart -> ${itemsInCart} items`);
 
   cartCount();
 }
