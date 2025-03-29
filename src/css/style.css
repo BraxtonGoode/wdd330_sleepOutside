@@ -254,6 +254,8 @@ button {
 
 .cart-footer {
   padding-inline: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .cart-footer h2 {
   display: flex;
@@ -326,6 +328,21 @@ footer {
   width: 100px;
   height: 100px;
 }
+
+.alert-banner {
+  margin: 0.5em 0;
+  padding: 0 0.8em;
+  display: flex;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+.alert-banner p {
+  color: #f00;
+}
+.alert-banner img {
+  width: 2em;
+  margin-left: auto;
+  order: 2;
 
 .product__color {
   display: flex;

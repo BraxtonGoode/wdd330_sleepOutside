@@ -1,17 +1,16 @@
 const baseURL = import.meta.env.VITE_SERVER_URL; // For testing (Ella needs this) "//server-nodejs.cit.byui.edu:3000/"
 
-function convertToJson(res) {
+async function convertToJson(res) {
+  const json = await res.json();
   if (res.ok) {
-    return res.json();
+    return json;
   } else {
-    throw new Error("Bad Response");
+    throw { name: "servicesError", message: json };
   }
 }
 
 export default class ExternalServices {
-  constructor() {
-
-  }
+  constructor() {}
 
   async getData(category) {
     const response = await fetch(`${baseURL}products/search/${category}`);
@@ -24,19 +23,16 @@ export default class ExternalServices {
     return (await convertToJson(product)).Result;
   }
 
-  async sendOrder(payload) {
-    const options = {
-      method: 'POST',
+  async sendOrder(order) {
+    return await fetch(`${baseURL}checkout`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload)
-    }
-    try {
-      return await fetch(`${baseURL}checkout`, options).then(convertToJson);
-    } catch (error) {
-      console.error(error);
-    }
+      body: JSON.stringify(order),
+    })
+      .then(async (response) => await convertToJson(response))
+      .then((json) => json);
   }
 }
-
